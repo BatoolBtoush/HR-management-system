@@ -1,14 +1,12 @@
 
-function Employee(employeeID,fullName,department,level,salary){
+function Employee(employeeID,fullName,department,level,imageUrl,salary){
     this.employeeID = employeeID;
     this.fullName = fullName;
     this.department = department;
-    this.level=level;
-    this.imageurlPath = "";
-    this.salary = salary;
+    this.level= level;
+    this.imageUrl = `.images/${this.fullName}.jpg`;
+    this.salary = this.calcSalary;
 }
-
-
 
 const employee1 = new Employee('1000','Ghazi Samer','Administraion','Senior',);
 const employee2 = new Employee('1001','Lana Ali','Finance','Senior',);
@@ -18,6 +16,35 @@ const employee5 = new Employee('1004','Omar Zaid','Development','Senior',);
 const employee6 = new Employee('1005','Rana Saleh','Development','Junior',);
 const employee7 = new Employee('1006','Hadi Ahmad','Finance','Mid-Senior',);
 
+
+Employee.prototype.render = function(){
+    let mySection = document.getElementById('info');
+    let divEl = document.createElement('div');
+    mySection.appendChild(divEl);
+
+    let imgEl = document.createElement('img');
+    divEl.appendChild(imgEl);
+    imgEl.setAttribute('src', this.imageUrl)
+    imgEl.setAttribute('alt',this.fullName);
+
+    let detailsEl = document.createElement('p');
+    divEl.appendChild(detailsEl);
+    detailsEl.textContent = `Name: ${this.fullName} - ID: ${this.employeeID}`;
+
+    let details2El = document.createElement('p');
+    divEl.appendChild(details2El);
+    details2El.textContent = `Department: ${this.department} - Level: ${this.level}`
+
+    let salaryEl = document.createElement('p');
+    divEl.appendChild(salaryEl);
+    salaryEl.textContent = `${this.salary}`
+}
+employee1.render();
+employee2.render();
+employee3.render();
+employee4.render();
+employee5.render();
+employee6.render();
 
 
 
@@ -42,23 +69,35 @@ if( this.level = 'Senior') {
 
 
 
-
-
-Employee.prototype.render = function() {
-    document.write(`<p>Name of the employee: ${this.fullName} <br> The net salary:${this.calcSalary()}</p>`)
-}
-
-employee1.render();
-employee2.render();
-employee3.render();
-employee4.render();
-employee5.render();
-employee6.render();
-employee7.render();
+// Employee.prototype.render = function() {
+//   document.write(`<p>Name of the employee: ${this.fullName} <br> The net salary:${this.calcSalary()}</p>`)
+// }
+// employee1.render();
+// employee2.render();
+// employee3.render();
+// employee4.render();
+// employee5.render();
+// employee6.render();
+// employee7.render();
 
 
 
 
+
+let moreInfo = document.getElementById('moreInfo');
+moreInfo.addEventListener('submit', addNewEmployeeInfo);
+
+function addNewEmployeeInfo(event){
+    event.preventDefault();
+    let fullName = event.target.fullName.value;
+    let department = event.target.department.value;
+    let level = event.target.level.value;
+    let imageUrl = event.target.imgurl.value;
+    
+    
+    let addNewEmployeeInfo = new Employee(fullName,department,level,imageUrl);
+    addNewEmployeeInfo.render();
+  }
 
 
 

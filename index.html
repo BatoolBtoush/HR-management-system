@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
  <header>
@@ -18,10 +20,50 @@
      </nav>
  </header> 
  <main>
-     <script src="app.js"></script>
+     <section>
+        <form  id="moreInfo">
+            <fieldset>
+                <legend>Add More Information</legend>
+                <label for="fullName">Full name</label>
+                <input type="text" name="fullName" id="fullName"/>
+                <br>
+                <br>
+                <label for="department">Department</label>
+                <select name="department" id="department">
+                    <option value="department"></option>
+                    <option value="administration">Administration</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="development">Development</option>
+                    <option value="finance">Finance</option>
+                </select>
+                <br>
+                <br>
+                <label for="level">Level</label>
+                <select name="level" id="level">
+                    <option value="level"></option>
+                    <option value="junior">Junior</option>
+                    <option value="mid-senior">Mid-Senior</option>
+                    <option value="senior">Senior</option>
+                </select>
+                <br>
+                <br>
+                <label for="imgurl">Image URL</label>
+                <input type="text" name="imgurl" id="imgurl"/>
+                <br>
+                <br>
+                <input type="submit" value="submit">
+            </fieldset>
+        </form>
+     </section> 
+     <section id="info">
+
+     </section>   
+        
+    <script src="app.js"></script>
+
  </main>
  <footer>
-     <div>
+     <div id="foo">
          <p> <a href = "">Facebook</a></p>
          <p> <a href = "">Instagram</a></p>
          <p> <a href="">Twitter</a></p>
