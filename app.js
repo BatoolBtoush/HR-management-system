@@ -7,40 +7,11 @@ function Employee(employeeID,fullName,department,level,imageUrl){
     this.level= level;
     this.imageUrl = imageUrl;
     this.salary = this.calcSalary();
+    Employee.allEmployees.push(this);
+
 }
 
-
-
-Employee.prototype.render = function(){
-    let mySection = document.getElementById('info');
-    let divEl = document.createElement('div');
-    mySection.appendChild(divEl);
-
-    let imgEl = document.createElement('img');
-    divEl.appendChild(imgEl);
-    imgEl.setAttribute('src', this.imageUrl)
-    imgEl.setAttribute('alt',this.fullName);
-
-    let detailsEl = document.createElement('p');
-    divEl.appendChild(detailsEl);
-    detailsEl.textContent = `Name: ${this.fullName} - ID: ${this.employeeID}`;
-
-    let details2El = document.createElement('p');
-    divEl.appendChild(details2El);
-    details2El.textContent = `Department: ${this.department} - Level: ${this.level}`
-
-    let salaryEl = document.createElement('p');
-    divEl.appendChild(salaryEl);
-    salaryEl.textContent = `${this.salary}`
-
-    let mySection2 = document.getElementById('task7')
-    let task7El = document.createElement('p');
-    mySection2.appendChild(task7El);
-    task7El.textContent = `Name of the employee: ${this.fullName} - The net salary:${this.salary}`
-}
-
-
-
+Employee.allEmployees =[];
 
 
 
@@ -64,6 +35,46 @@ if( this.level = 'Senior') {
 }
 }
 
+function render (){
+    let mySection = document.getElementById('info');
+
+
+    for(let i =0; i<Employee.allEmployees.length;i++){
+        let bat = Employee.allEmployees[i];
+    let divEl = document.createElement('div');
+    mySection.appendChild(divEl);
+
+    let imgEl = document.createElement('img');
+    divEl.appendChild(imgEl);
+    imgEl.setAttribute('src', bat.imageUrl)
+    imgEl.setAttribute('alt',bat.fullName);
+
+    let detailsEl = document.createElement('p');
+    divEl.appendChild(detailsEl);
+    detailsEl.textContent = `Name: ${bat.fullName} - ID: ${bat.employeeID}`;
+
+    let details2El = document.createElement('p');
+    divEl.appendChild(details2El);
+    details2El.textContent = `Department: ${bat.department} - Level: ${bat.level}`
+
+    let salaryEl = document.createElement('p');
+    divEl.appendChild(salaryEl);
+    salaryEl.textContent = `${bat.salary}`
+
+    
+    // let mySection2 = document.getElementById('task7')
+    // let task7El = document.createElement('p');
+    // mySection2.appendChild(task7El);
+    // task7El.textContent = `Name of the employee: ${bat.fullName} - The net salary:${bat.salary}`
+}}
+
+
+
+
+
+
+
+
 const employee1 = new Employee('1000','Ghazi Samer','Administraion','Senior','images/Ghazi.jpg');
 const employee2 = new Employee('1001','Lana Ali','Finance','Senior','images/Lana.jpg');
 const employee3 = new Employee('1002','Tamara Ayoub','Marketing','Senior','images/Tamara.jpg');
@@ -73,13 +84,16 @@ const employee6 = new Employee('1005','Rana Saleh','Development','Junior','image
 const employee7 = new Employee('1006','Hadi Ahmad','Finance','Mid-Senior','images/Hadi.jpg');
 
 
-employee1.render();
-employee2.render();
-employee3.render();
-employee4.render();
-employee5.render();
-employee6.render();
 
+render();
+
+
+// employee1.render();
+// employee2.render();
+// employee3.render();
+// employee4.render();
+// employee5.render();
+// employee6.render();
 
 
 
@@ -88,7 +102,6 @@ employee6.render();
 
   function randomIdNumbers(){ 
     let b = Math.floor(1000 + Math.random() * 1006);
-    console.log(b);
     } 
     randomIdNumbers();
   
@@ -101,9 +114,31 @@ function addNewEmployeeInfo(event){
     
     
     let addNewEmployeeInfo = new Employee(randomIdNumbers(),fullName,department,level,imageUrl);
-    addNewEmployeeInfo.render();
+    render();
+    settingItem()
   }
 
-  
+
+
+
+
+
+function settingItem(){
+    let data = JSON.stringify(Employee.allEmployees);
+    localStorage.setItem('employeesinfo',data)
+  }
  
   
+  function gettingItem(){
+    let stringObj = localStorage.getItem('employeesinfo');
+    // console.log(stringObj);
+    let parsObj = JSON.parse(stringObj);
+    // console.log(parsObj);
+    if (parsObj !== null){
+        Employee.allEmployees = parsObj
+    }
+  
+    render();
+  
+  }
+  gettingItem()
