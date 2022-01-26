@@ -1,20 +1,20 @@
 
-function Employee(employeeID,fullName,department,level,imageUrl,salary){
+function Employee(employeeID,fullName,department,level,imageUrl){
     this.employeeID = employeeID;
     this.fullName = fullName;
     this.department = department;
     this.level= level;
-    this.imageUrl = `.images/${this.fullName}.jpg`;
-    this.salary = this.calcSalary;
+    this.imageUrl = imageUrl;
 }
 
-const employee1 = new Employee('1000','Ghazi Samer','Administraion','Senior',);
-const employee2 = new Employee('1001','Lana Ali','Finance','Senior',);
-const employee3 = new Employee('1002','Tamara Ayoub','Marketing','Senior',);
-const employee4 = new Employee('1003','Safi Walid','Administraion','Mid-Senior',);
-const employee5 = new Employee('1004','Omar Zaid','Development','Senior',);
-const employee6 = new Employee('1005','Rana Saleh','Development','Junior',);
-const employee7 = new Employee('1006','Hadi Ahmad','Finance','Mid-Senior',);
+
+const employee1 = new Employee('1000','Ghazi Samer','Administraion','Senior','images/Ghazi.jpg');
+const employee2 = new Employee('1001','Lana Ali','Finance','Senior','images/Lana.jpg');
+const employee3 = new Employee('1002','Tamara Ayoub','Marketing','Senior','images/Tamara.jpg');
+const employee4 = new Employee('1003','Safi Walid','Administraion','Mid-Senior','images/Safi.jpg');
+const employee5 = new Employee('1004','Omar Zaid','Development','Senior','images/Omar.jpg');
+const employee6 = new Employee('1005','Rana Saleh','Development','Junior','images/Rana.jpg');
+const employee7 = new Employee('1006','Hadi Ahmad','Finance','Mid-Senior','images/Hadi.jpg');
 
 
 Employee.prototype.render = function(){
@@ -37,7 +37,7 @@ Employee.prototype.render = function(){
 
     let salaryEl = document.createElement('p');
     divEl.appendChild(salaryEl);
-    salaryEl.textContent = `${this.salary}`
+    salaryEl.textContent = `${this.calcSalary}`
 }
 employee1.render();
 employee2.render();
@@ -69,23 +69,23 @@ if( this.level = 'Senior') {
 
 
 
-// Employee.prototype.render = function() {
-//   document.write(`<p>Name of the employee: ${this.fullName} <br> The net salary:${this.calcSalary()}</p>`)
-// }
-// employee1.render();
-// employee2.render();
-// employee3.render();
-// employee4.render();
-// employee5.render();
-// employee6.render();
-// employee7.render();
+ Employee.prototype.render = function() {
+   document.write(`<p>Name of the employee: ${this.fullName} <br> The net salary:${this.calcSalary()}</p>`)
+ }
+ employee1.render();
+ employee2.render();
+ employee3.render();
+employee4.render();
+ employee5.render();
+ employee6.render();
+ employee7.render();
 
 
 
 
-
-let moreInfo = document.getElementById('moreInfo');
-moreInfo.addEventListener('submit', addNewEmployeeInfo);
+ let moreInfo = document.getElementById('moreInfo');
+  moreInfo.addEventListener('submit', addNewEmployeeInfo);
+  
 
 function addNewEmployeeInfo(event){
     event.preventDefault();
@@ -99,6 +99,6 @@ function addNewEmployeeInfo(event){
     addNewEmployeeInfo.render();
   }
 
-
+ 
 
 
