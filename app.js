@@ -33,15 +33,16 @@ Employee.prototype.render = function(){
     divEl.appendChild(salaryEl);
     salaryEl.textContent = `${this.salary}`
 
-    // document.write(`<p>Name of the employee: ${this.fullName} <br> The net salary:${this.salary}</p>`)
+    let mySection2 = document.getElementById('task7')
+    let task7El = document.createElement('p');
+    mySection2.appendChild(task7El);
+    task7El.textContent = `Name of the employee: ${this.fullName} - The net salary:${this.salary}`
 }
 
 
-    Employee.prototype.randomIdNumbers =   function() { 
-    let b = Math.floor(1000 + Math.random() * 1006);
-    return b;
-    }
-    
+
+
+
 
 Employee.prototype.calcSalary = function () {
     this.level = ['Senior','Mid-Senior','Junior'];
@@ -80,23 +81,29 @@ employee5.render();
 employee6.render();
 
 
- 
 
 
  let moreInfo = document.getElementById('moreInfo');
   moreInfo.addEventListener('submit', addNewEmployeeInfo);
 
-
+  function randomIdNumbers(){ 
+    let b = Math.floor(1000 + Math.random() * 1006);
+    console.log(b);
+    } 
+    randomIdNumbers();
+  
 function addNewEmployeeInfo(event){
     event.preventDefault();
     let fullName = event.target.fullName.value;
     let department = event.target.department.value;
     let level = event.target.level.value;
     let imageUrl = event.target.imgurl.value;
-
+    
+    
     let addNewEmployeeInfo = new Employee(randomIdNumbers(),fullName,department,level,imageUrl);
     addNewEmployeeInfo.render();
   }
- 
+
   
+ 
   
